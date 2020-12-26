@@ -1,0 +1,92 @@
+<!-- 顶部图片 -->
+<view class="bgImgae">
+	<image src='../../static/index/timg1.jpg' class='img'></image>
+</view>
+<!-- 设置搜索栏 -->
+<view class="search">
+	<view class="search_view">
+		<icon type="search"></icon>
+		<input placeholder="菜谱搜索" model:value="{{searchVal}}"></input>
+	</view>
+	<text bindtap="_recipelistPage" data-title="{{searchVal}}" data-tag="search">搜索</text>
+</view>
+<!-- 分类导航 -->
+<view class='sort-menu'>
+	<!-- 添加点击事件，跳到所有的菜谱分类页面 -->
+	<!-- <view class='menu-list' bindtap="_typelistPage">
+		<image src='/static/index/muying.png'></image>
+		<text>母婴</text>
+	</view> -->
+	<view class='menu-list' bindtap="_recipelistPage" data-tag="tjcp" data-title="推荐菜谱">
+		<image src='/static/index/muying.png'></image>
+		<text>母婴</text>
+	</view>
+	<!-- 添加点击事件，跳到相应的菜单列表页面 -->
+	<!-- <view class='menu-list' data-tag="ptfl" bimuyingndtap="_recipelistPage" data-id="{{types[0]._id}}" data-title="{{types[0].typeName}}">
+		<image src='/static/index/fushi.png'></image>
+		<text>服饰</text>
+	</view> -->
+	<!-- 造假3 -->
+	<view class='menu-list' data-tag="ptfl" bimuyingndtap="_recipelistPage" data-id="{{types[0]._id}}" data-title="{{types[0].typeName}}">
+		<image src='/static/index/fushi.png'></image>
+		<text>敬请期待</text>
+	</view>
+	<view class='menu-list' data-tag="ptfl" bimuyingndtap="_recipelistPage" data-id="{{types[0]._id}}" data-title="{{types[0].typeName}}">
+		<image src='/static/index/meishi2.png'></image>
+		<text>敬请期待</text>
+	</view>
+	<view class='menu-list' data-tag="ptfl" bimuyingndtap="_recipelistPage" data-id="{{types[0]._id}}" data-title="{{types[0].typeName}}">
+		<image src='/static/index/baihuo.png'></image>
+		<text>敬请期待</text>
+	</view>
+	<!-- old二级动态 -->
+	<!-- <view class='menu-list' data-tag="ptfl" bindtap="_recipelistPage" data-id="{{types[1]._id}}" data-title="{{types[1].typeName}}">
+		<image src='/static/index/meishi2.png'></image>
+		<text>{{types[1].typeName}}</text>
+	</view> -->
+	<!-- 传入推荐 -->
+	<!-- <view class='menu-list' bindtap="_recipelistPage" data-tag="tjcp" data-title="推荐菜谱">
+		<image src='/static/index/baihuo.png'></image>
+		<text>百货</text>
+	</view> -->
+</view>
+<!-- 热门菜谱 -->
+<view class='hot-recipe' >
+	<!-- moreHotRecipes更多的热门菜谱 -->
+	<mp-cell link hover value="最受欢迎" bindtap="_recipelistPage" data-tag="rmcp" data-title="热门菜谱">
+		<image slot="title" src="/static/index/remen.png" style="margin-right: 16px;vertical-align: middle;width:30px; height: 30px;"></image>
+	</mp-cell>
+</view>
+<!-- 热门菜谱列表 -->
+<view class="hot-recipe-lists">
+	<!-- 点击图片，跳转到当前菜单的菜谱详情页面 -->
+	<!-- id :菜单id， recipeName：菜单名称 -->
+	<block wx:for="{{hotRecipes}}">
+	<view class="hotlist">
+		<view>
+			<image bindtap="_torecipeDetailPage" data-id="{{item._id}}" data-title="{{item.recipeName}}" class="recipeimage" mode="scaleToFill" src="{{item.filesID[0]}}"></image>
+		</view>
+		<!-- 菜谱信息 -->
+		<view class="hotlist_info">
+			<!-- 菜谱名称 -->
+			<view class="recipename">
+				<text>{{item.recipeName}}</text>
+			</view>
+			<!-- 详细信息 -->
+			<view class="dedailinfo">
+				<!-- 头像  名字 -->
+				<view>
+					<image class="usernameimage" mode="scaleToFill" src="{{item.userInfo.avatarUrl}}"></image>
+					<text>{{item.userInfo.nickName}}</text>
+				</view>
+				<!-- 热度 -->
+				<view>
+					<image class="hotimage" mode="scaleToFill" src="/static/index/hot.png"></image>
+					<text>{{item.views}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	</block>
+
+</view>
