@@ -40,7 +40,7 @@ Page({
     })
   },
   async _getTypes() {
-    let res = await api._find(global.table.typeTable, {}, 1, 2);
+    let res = await api._find(global.table.typeTable, {}, 1);
     // console.log(res);
     this.setData({
       types: res.data
